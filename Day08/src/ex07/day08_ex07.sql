@@ -1,0 +1,25 @@
+-- Session 1
+-- BEGIN;
+-- UPDATE pizzeria
+-- SET rating = 4
+-- WHERE id = 1;
+-- UPDATE pizzeria
+-- SET rating = 4
+-- WHERE id = 2;
+-- END;
+
+-- Session 2
+-- BEGIN;
+-- UPDATE pizzeria
+-- SET rating = 3
+-- WHERE id = 2;
+-- UPDATE pizzeria
+-- SET rating = 3
+-- WHERE id = 1;
+-- ОШИБКА:  обнаружена взаимоблокировка
+-- DETAIL:  Процесс 9212 ожидает в режиме ShareLock блокировку "транзакция 1728"; заблокирован процессом 5048.
+-- Процесс 5048 ожидает в режиме ShareLock блокировку "транзакция 1729"; заблокирован процессом 9212.
+-- HINT:  Подробности запроса смотрите в протоколе сервера.
+-- CONTEXT:  при изменении кортежа (0,31) в отношении "pizzeria"
+-- s21=# END;
+-- ROLLBACK
